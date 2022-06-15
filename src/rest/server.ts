@@ -3,8 +3,9 @@ import { ReqHandler } from './ReqHandler';
 import NotFoundError from '../error/NotFoundError';
 import InvalidDataError from '../error/InvalidDataError';
 import createHandler from './CreateHandler';
+import 'dotenv/config';
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.HTTP_SERVER_PORT || 4000;
 
 const handlers: ReqHandler[] = [
   createHandler,
@@ -14,7 +15,7 @@ const server = http.createServer(async (req, res) => {
   try {
     res.setHeader('Content-Type', 'application/json');
 
-    const path = req.url?.split('/') || [];
+    const path = req.url?.split('/').slice(1) || [];
     const handler = handlers.find((h) => h.isApplicable(path, req.method));
     if (handler) {
       await handler.handle(req, res);
