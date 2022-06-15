@@ -10,7 +10,7 @@ function checkId(id: string) {
   }
 }
 
-async function findUserOrThrow(id: string) {
+async function findUserOrThrow(id: UserId) {
   checkId(id);
   const user = await userRepository.findById(id);
   if (!user) {
