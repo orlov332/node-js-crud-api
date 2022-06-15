@@ -2,10 +2,13 @@ import http from 'http';
 import { ReqHandler } from './ReqHandler';
 import NotFoundError from '../error/NotFoundError';
 import InvalidDataError from '../error/InvalidDataError';
+import createHandler from './CreateHandler';
 
 const PORT = process.env.PORT || 4000;
 
-const handlers: ReqHandler[] = [];
+const handlers: ReqHandler[] = [
+  createHandler,
+];
 
 const server = http.createServer(async (req, res) => {
   try {
