@@ -5,7 +5,7 @@ import { validate as uuidValidate, version as uuidVersion } from 'uuid';
 import InvalidDataError from '../error/InvalidDataError';
 
 function checkId(id: string) {
-  if (!uuidValidate(id) && uuidVersion(id) !== 4) {
+  if (!uuidValidate(id) || uuidVersion(id) !== 4) {
     throw new InvalidDataError(`Id value ${id} is not valid uuid`);
   }
 }

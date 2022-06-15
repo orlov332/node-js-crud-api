@@ -1,14 +1,18 @@
 import http from 'http';
+import 'dotenv/config';
 import { ReqHandler } from './ReqHandler';
 import NotFoundError from '../error/NotFoundError';
 import InvalidDataError from '../error/InvalidDataError';
 import createHandler from './CreateHandler';
-import 'dotenv/config';
+import getAllHandler from './GetAllHandler';
+import getByIdHandler from './GetByIdHandler';
 
 const PORT = process.env.HTTP_SERVER_PORT || 4000;
 
 const handlers: ReqHandler[] = [
   createHandler,
+  getAllHandler,
+  getByIdHandler,
 ];
 
 const server = http.createServer(async (req, res) => {
