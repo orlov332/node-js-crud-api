@@ -11,11 +11,12 @@ const server = http.createServer(async (req, res) => {
   try {
     res.setHeader('Content-Type', 'application/json');
 
-    const handler = handlers.find((h) => h.isApplicable());
+    const path = req.url?.split('/') || [];
+    const handler = handlers.find((h) => h.isApplicable(path, req.method));
     if (handler) {
       await handler.handle(req, res);
     } else {
-      throw new NotFoundError('');
+      throw new NotFoundError(`Unknown endpoint requested: ${req.url}`);
     }
   } catch (error) {
     let message;
