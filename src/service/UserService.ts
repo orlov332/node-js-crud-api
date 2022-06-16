@@ -36,8 +36,8 @@ const UserService = {
   },
 
   update: async (id: UserId, updUser: User) => {
-    await findUserOrThrow(id);
-    return await userRepository.update({ ...updUser, id });
+    const exUser = await findUserOrThrow(id);
+    return await userRepository.update({ ...exUser, ...updUser, id });
   },
 
   delete: async (id: UserId) => {

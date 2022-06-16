@@ -6,6 +6,7 @@ import InvalidDataError from '../error/InvalidDataError';
 import createHandler from './CreateHandler';
 import getAllHandler from './GetAllHandler';
 import getByIdHandler from './GetByIdHandler';
+import updateHandler from './UpdateHandler';
 
 const PORT = process.env.HTTP_SERVER_PORT || 4000;
 
@@ -13,6 +14,7 @@ const handlers: ReqHandler[] = [
   createHandler,
   getAllHandler,
   getByIdHandler,
+  updateHandler,
 ];
 
 const server = http.createServer(async (req, res) => {
