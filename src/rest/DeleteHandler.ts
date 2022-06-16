@@ -4,18 +4,18 @@ import { getReqBody } from './helpers';
 
 export default {
   handle: async (req, res) => {
-    const body = await getReqBody(req);
+    const id = req.url?.split('/')[3] || '';
 
-    const user = await userService.create(JSON.parse(body));
+    const user = await userService.delete(id);
 
-    res.statusCode = 201;
+    res.statusCode = 204;
     res.end(JSON.stringify(user));
   },
 
   isApplicable: ([api, entity, id], method) =>
-    method === 'POST' &&
+    method === 'DELETE' &&
     api === 'api' &&
     entity === 'users' &&
-    id === undefined,
+    id,
 
 } as ReqHandler;

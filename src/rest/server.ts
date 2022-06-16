@@ -7,6 +7,7 @@ import createHandler from './CreateHandler';
 import getAllHandler from './GetAllHandler';
 import getByIdHandler from './GetByIdHandler';
 import updateHandler from './UpdateHandler';
+import deleteHandler from './DeleteHandler';
 
 const PORT = process.env.HTTP_SERVER_PORT || 4000;
 
@@ -15,6 +16,7 @@ const handlers: ReqHandler[] = [
   getAllHandler,
   getByIdHandler,
   updateHandler,
+  deleteHandler,
 ];
 
 const server = http.createServer(async (req, res) => {
@@ -45,5 +47,5 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`server started on port: ${PORT}`);
+  console.log(`Server started on port: ${PORT}`);
 });
