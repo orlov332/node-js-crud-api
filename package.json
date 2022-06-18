@@ -3,14 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "module": "NodeNext",
   "scripts": {
     "build": "tsc -p .",
     "start:dev": "nodemon ./src/app.ts",
     "start:prod": "node ./dist/app.js",
+    "start:multy": "node ./dist/cluster.js",
     "test:e2e": "export HTTP_SERVER_PORT=`npx get-port-cli` && npx concurrently -k -r \"npm run start:dev\" \"npx wait-port $HTTP_SERVER_PORT && npm run test:postman\"",
     "test:postman": "npx newman run ./postman/crud.postman_collection.json --env-var PORT=$HTTP_SERVER_PORT",
-    "pretest": "npm run build",
-    "prestart:prod": "npm run build"
+    "prestart:prod": "npm run build",
+    "prestart:multy": "npm run build"
   },
   "keywords": [],
   "author": "",

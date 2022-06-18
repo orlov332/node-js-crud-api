@@ -1,1 +1,4 @@
-import './rest/server';
+import startServer from './rest/server';
+
+
+startServer();
