@@ -13,5 +13,9 @@
 ### Postman collection
 Import collection [./postman/crud.postman_collection.json](./postman/crud.postman_collection.json) into Postman and run it.
 ### Run postman-based end-to-end tests
+#### Run on Windows
+1. Start development server `npm run start:dev`
+2. Run Postman test `npm run test:postman`
+#### Run on macOS 
 `npm run test:e2e`
 It starts development server on random free port, waits for starting and run postman collection on it, then kills server. 
