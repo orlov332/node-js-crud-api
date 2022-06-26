@@ -2,26 +2,41 @@
   "name": "crud-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
+  "module": "NodeNext",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc -p .",
+    "start:dev": "nodemon ./src/app.ts",
+    "start:prod": "node ./dist/app.js",
+    "start:multy": "node ./dist/cluster.js",
+    "test:e2e": "export HTTP_SERVER_PORT=`npx get-port-cli` && npx concurrently -k -r \"npm run start:dev\" \"npx wait-port $HTTP_SERVER_PORT && npm run test:postman -- --env-var PORT=$HTTP_SERVER_PORT\"",
+    "test:postman": "npx newman run ./postman/crud.postman_collection.json",
+    "prestart:prod": "npm run build",
+    "prestart:multy": "npm run build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^17.0.42",
+    "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.28.0",
     "@typescript-eslint/parser": "^5.28.0",
+    "concurrently": "^7.2.2",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.1",
     "eslint": "^8.17.0",
-    "eslint-config-standard": "^17.0.0",
+    "eslint-config-google": "^0.14.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.2.2",
     "eslint-plugin-promise": "^6.0.0",
+    "get-port-cli": "^3.0.0",
+    "newman": "^5.3.2",
     "nodemon": "^2.0.16",
     "ts-node": "^10.8.1",
     "typescript": "^4.7.3"
+  },
+  "dependencies": {
+    "uuid": "^8.3.2"
   }
 }
